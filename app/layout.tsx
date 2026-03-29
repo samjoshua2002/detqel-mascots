@@ -18,19 +18,32 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Sintra X AI Team - Hire Your First AI Employee',
   description: 'Meet Sintra X - 12 highly trained AI teammates, perfect for tasks you keep meaning to delegate. Your AI team that never sleeps.',
+  openGraph: {
+    title: 'Sintra X AI Team',
+    description: 'Hire your first AI employee. 12 highly trained AI teammates for your business.',
+    url: 'https://sintrax.com',
+    siteName: 'Sintra X',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Sintra X AI Team',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sintra X AI Team',
+    description: 'Hire your first AI employee. 12 highly trained AI teammates for your business.',
+    images: ['/opengraph-image.png'],
+  },
   icons: {
     icon: [
       {
         url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
