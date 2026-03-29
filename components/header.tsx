@@ -1,30 +1,63 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showBanner, setShowBanner] = useState(true)
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 7,
+    minutes: 40,
+    seconds: 42
+  })
+
+  // Timer logic
+  useEffect(() => {
+    if (!showBanner) return
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 }
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
+        return prev
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [showBanner])
+
+  const formatTime = (num: number) => num.toString().padStart(2, "0")
 
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-[100] w-full">
       {/* Promo Banner */}
-      <div className="bg-gradient-to-r from-secondary-container to-secondary py-2.5 px-4 text-center">
-        <div className="flex items-center justify-center gap-3 text-sm font-medium text-surface">
-          <span className="text-lg">🌷</span>
-          <span>Get up to 70% OFF</span>
-          <span className="flex items-center gap-1.5 rounded-full bg-surface/20 px-3 py-1 text-xs font-semibold">
-            <span className="inline-block h-2 w-2 rounded-full bg-surface animate-pulse" />
-            07:40:42
-          </span>
-          <span className="text-lg">🐣</span>
+      {showBanner && (
+        <div className="relative bg-gradient-to-r from-secondary-container to-secondary py-2.5 px-4 text-center">
+          <div className="flex items-center justify-center gap-3 text-sm font-medium text-surface max-w-7xl mx-auto">
+            <span className="text-lg">🌷</span>
+            <span className="hidden sm:inline">Spring Sale:</span>
+            <span>Get up to 70% OFF</span>
+            <span className="flex items-center gap-1.5 rounded-full bg-surface/20 px-3 py-1 text-xs font-semibold tabular-nums">
+              <span className="inline-block h-2 w-2 rounded-full bg-surface animate-pulse" />
+              {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+            </span>
+            <span className="text-lg">🐣</span>
+          </div>
+          <button 
+            onClick={() => setShowBanner(false)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-surface/60 hover:text-surface transition-colors"
+          >
+            <X size={18} />
+          </button>
         </div>
-      </div>
+      )}
 
       {/* Navigation */}
-      <header className="sticky top-0 z-50 glass border-b border-outline-variant/10">
+      <header className="glass border-b border-outline-variant/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -76,7 +109,7 @@ export function Header() {
           </div>
         )}
       </header>
-    </>
+    </div>
   )
 }
 
