@@ -7,10 +7,10 @@ import { TaskCardsStack } from "@/components/task-cards"
 
 export function FeaturesSection() {
   return (
-    <section className="relative py-24 bg-surface">
+    <section className="relative py-24 bg-surface overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Feature 1 - AI Assistant Team */}
-        <div className="rounded-3xl bg-surface-container-low p-8 lg:p-16 mb-12">
+        <div className="rounded-3xl bg-surface-container-low p-6 md:p-12 lg:p-16 mb-12 overflow-hidden border border-white/5">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
