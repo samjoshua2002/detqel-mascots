@@ -12,7 +12,7 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-surface">
+    <main className="min-h-screen bg-surface overflow-x-hidden">
       <Header />
       <HeroSection />
       <FeaturesSection />
@@ -20,20 +20,20 @@ export default function Home() {
       <ApprovalSection />
       {/* Shared Gradient Effect Section */}
       <div className="relative overflow-hidden bg-surface">
-        {/* Vibrant Decorative Blur Gradients */}
+        {/* Vibrant Decorative Blur Gradients - Adjusted scales for mobile */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Main Central Glow - Bright Purple (Tertiary-Container) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[900px] bg-tertiary-container/40 blur-[140px] rounded-full opacity-80 animate-glow-pulse mix-blend-plus-lighter" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] md:w-[1100px] h-[200px] md:h-[900px] bg-tertiary-container/40 blur-[60px] md:blur-[140px] rounded-full opacity-80 animate-glow-pulse mix-blend-plus-lighter" />
           
           {/* Top Secondary Glow - Vibrant Blue (Primary-Container) */}
-          <div className="absolute top-[15%] left-1/3 -translate-x-1/2 w-[900px] h-[700px] bg-primary-container/30 blur-[130px] rounded-full opacity-60 animate-float mix-blend-plus-lighter" />
+          <div className="absolute top-[15%] left-1/3 -translate-x-1/2 w-[150px] md:w-[900px] h-[150px] md:h-[700px] bg-primary-container/30 blur-[50px] md:blur-[130px] rounded-full opacity-60 animate-float mix-blend-plus-lighter" />
           
           {/* Bottom Secondary Glow - Vivid Peach (Secondary-Container) */}
-          <div className="absolute bottom-[15%] right-1/3 translate-x-1/2 w-[900px] h-[700px] bg-secondary-container/20 blur-[130px] rounded-full opacity-60 animate-float-delayed mix-blend-plus-lighter" />
+          <div className="absolute bottom-[15%] right-1/3 translate-x-1/2 w-[250px] md:w-[900px] h-[200px] md:h-[700px] bg-secondary-container/20 blur-[50px] md:blur-[130px] rounded-full opacity-60 animate-float-delayed mix-blend-plus-lighter" />
           
           {/* Sharp Highlighting Blobs for extra "Pop" */}
-          <div className="absolute top-[45%] right-[15%] w-[400px] h-[400px] bg-tertiary/30 blur-[100px] rounded-full opacity-50 animate-glow-pulse" />
-          <div className="absolute bottom-[45%] left-[15%] w-[400px] h-[400px] bg-primary-container/25 blur-[100px] rounded-full opacity-50 animate-float-delayed" />
+          <div className="absolute top-[45%] right-[15%] w-[150px] md:w-[400px] h-[150px] md:h-[400px] bg-tertiary/30 blur-[40px] md:blur-[100px] rounded-full opacity-50 animate-glow-pulse" />
+          <div className="absolute bottom-[45%] left-[15%] w-[150px] md:w-[400px] h-[150px] md:h-[400px] bg-primary-container/25 blur-[40px] md:blur-[100px] rounded-full opacity-50 animate-float-delayed" />
         </div>
 
         <div className="relative z-10">

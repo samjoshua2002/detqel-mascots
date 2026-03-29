@@ -98,7 +98,7 @@ export function CoworkersSection() {
   }
 
   return (
-    <section className="py-24 md:py-32 bg-surface">
+    <section className="py-24 md:py-32 bg-surface overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-2">
@@ -107,13 +107,13 @@ export function CoworkersSection() {
         <p className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground mb-12">
           Set up once. Then... it just works. (Wild, we know.)
         </p>
-
+ 
         {/* Carousel */}
         <div className="relative">
           <div
             ref={scrollRef}
             onScroll={checkScroll}
-            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4"
+            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 scroll-smooth"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {coworkers.map((coworker) => (
