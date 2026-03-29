@@ -18,7 +18,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Sintra X AI Team - Hire Your First AI Employee',
   description: 'Meet Sintra X - 12 highly trained AI teammates, perfect for tasks you keep meaning to delegate. Your AI team that never sleeps.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
