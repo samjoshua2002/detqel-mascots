@@ -13,10 +13,10 @@ interface ApprovalCardProps {
 function ApprovalCard({ avatar, title, delay = 0 }: ApprovalCardProps) {
   return (
     <div
-      className="flex items-center gap-4 rounded-3xl bg-surface-container-highest/80 backdrop-blur-sm px-5 py-4 shadow-lg ghost-border animate-slide-up"
+      className="flex items-center gap-3 md:gap-4 rounded-3xl bg-surface-container-highest/80 backdrop-blur-sm px-4 md:px-5 py-3 md:py-4 shadow-lg ghost-border animate-slide-up"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="relative h-12 w-12 flex-shrink-0 rounded-full overflow-hidden">
+      <div className="relative h-10 w-10 md:h-12 md:w-12 flex-shrink-0 rounded-full overflow-hidden">
         <Image
           src={avatar}
           alt="AI Assistant"
@@ -25,15 +25,15 @@ function ApprovalCard({ avatar, title, delay = 0 }: ApprovalCardProps) {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-on-surface font-medium truncate">{title}</p>
+        <p className="text-on-surface font-medium truncate text-sm md:text-base">{title}</p>
         <div className="flex items-center gap-1.5 text-warning">
-          <span className="inline-flex items-center gap-1 text-sm font-medium">
-            <span className="inline-block h-4 w-4 rounded border-2 border-dashed border-warning" />
+          <span className="inline-flex items-center gap-1 text-[10px] md:text-sm font-medium">
+            <span className="inline-block h-3 w-3 md:h-4 md:w-4 rounded border-2 border-dashed border-warning" />
             Needs action
           </span>
         </div>
       </div>
-      <button className="rounded-full bg-surface-container-high/80 px-5 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container/80 transition-colors">
+      <button className="flex-shrink-0 rounded-full bg-surface-container-high/80 px-4 md:px-5 py-1.5 md:py-2 text-xs md:text-sm font-medium text-on-surface-variant hover:bg-surface-container/80 transition-colors whitespace-nowrap">
         Approve
       </button>
     </div>
@@ -42,9 +42,9 @@ function ApprovalCard({ avatar, title, delay = 0 }: ApprovalCardProps) {
 
 export function ApprovalSection() {
   return (
-    <section className="relative py-24 bg-surface">
+    <section className="relative py-24 bg-surface overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-surface-container-low p-8 lg:p-16">
+        <div className="rounded-3xl bg-surface-container-low p-6 md:p-8 lg:p-16 overflow-hidden border border-white/5">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Content */}
             <div className="space-y-6">
@@ -71,7 +71,7 @@ export function ApprovalSection() {
             </div>
 
             {/* Right - Approval Cards */}
-            <div className="space-y-4 max-w-md mx-auto lg:mx-0 lg:ml-auto">
+            <div className="space-y-4 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
               <ApprovalCard
                 avatar="/assets/ai-assistant-male.png"
                 title="Review your new website"
@@ -84,7 +84,7 @@ export function ApprovalSection() {
               />
               <ApprovalCard
                 avatar="/assets/ai-assistant-female.png"
-                title="New post"
+                title="New campaign draft"
                 delay={300}
               />
             </div>
