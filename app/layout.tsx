@@ -16,19 +16,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Sintra X AI Team - Hire Your First AI Employee',
-  description: 'Meet Sintra X - 12 highly trained AI teammates, perfect for tasks you keep meaning to delegate. Your AI team that never sleeps.',
+  title: 'GuideTalk — AI Anime & Gaming Character Companion App',
+  description: 'Chat with your favourite characters from Genshin Impact, anime, and games in their authentic voice, powered by Azure OpenAI. Features live dynamic artwork, instant look cycling, rivals discovery, and daily prophecies.',
   openGraph: {
-    title: 'Sintra X AI Team',
-    description: 'Hire your first AI employee. 12 highly trained AI teammates for your business.',
-    url: 'https://sintrax.com',
-    siteName: 'Sintra X',
+    title: 'GuideTalk — AI Anime & Gaming Character Companion App',
+    description: 'Chat with characters from Genshin Impact, anime, and games — in their own voice, powered by Azure OpenAI.',
+    url: 'https://guidetalk.onrender.com',
+    siteName: 'GuideTalk',
     images: [
       {
-        url: '/opengraph-image.png',
+        url: 'https://server.wallpaperalchemy.com/storage/wallpapers/562/satoru-gojo-4k-anime-wallpaper-jujutsu-kaisen.jpg',
         width: 1200,
         height: 630,
-        alt: 'Sintra X AI Team',
+        alt: 'GuideTalk AI Character Companion App',
       },
     ],
     locale: 'en_US',
@@ -36,17 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sintra X AI Team',
-    description: 'Hire your first AI employee. 12 highly trained AI teammates for your business.',
-    images: ['/opengraph-image.png'],
-  },
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-      },
-    ],
-    apple: '/apple-icon.png',
+    title: 'GuideTalk — AI Anime Companion App',
+    description: 'Chat with anime & game characters in their authentic voice, powered by Azure OpenAI.',
+    images: ['https://server.wallpaperalchemy.com/storage/wallpapers/562/satoru-gojo-4k-anime-wallpaper-jujutsu-kaisen.jpg'],
   },
 }
 
@@ -61,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark overflow-x-hidden">
-      <body className={`${plusJakartaSans.variable} ${inter.variable} font-sans antialiased overflow-x-hidden`}>
+      <body className={`${plusJakartaSans.variable} ${inter.variable} font-sans antialiased overflow-x-hidden bg-surface text-on-surface`}>
         {children}
         <Analytics />
       </body>

@@ -1,96 +1,140 @@
 "use client"
 
-import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { Sparkles, Compass, Moon, Star, Calendar, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-interface ApprovalCardProps {
-  avatar: string
-  title: string
-  delay?: number
-}
-
-function ApprovalCard({ avatar, title, delay = 0 }: ApprovalCardProps) {
-  return (
-    <div
-      className="flex items-center gap-3 md:gap-4 rounded-3xl bg-surface-container-highest/80 backdrop-blur-sm px-4 md:px-5 py-3 md:py-4 shadow-lg ghost-border animate-slide-up"
-      style={{ animationDelay: `${delay}ms` }}
-    >
-      <div className="relative h-10 w-10 md:h-12 md:w-12 flex-shrink-0 rounded-full overflow-hidden">
-        <Image
-          src={avatar}
-          alt="AI Assistant"
-          fill
-          className="object-cover"
-        />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-on-surface font-medium truncate text-sm md:text-base">{title}</p>
-        <div className="flex items-center gap-1.5 text-warning">
-          <span className="inline-flex items-center gap-1 text-[10px] md:text-sm font-medium">
-            <span className="inline-block h-3 w-3 md:h-4 md:w-4 rounded border-2 border-dashed border-warning" />
-            Needs action
-          </span>
-        </div>
-      </div>
-      <button className="flex-shrink-0 rounded-full bg-surface-container-high/80 px-4 md:px-5 py-1.5 md:py-2 text-xs md:text-sm font-medium text-on-surface-variant hover:bg-surface-container/80 transition-colors whitespace-nowrap">
-        Approve
-      </button>
-    </div>
-  )
-}
+import { DownloadModal } from "@/components/download-modal"
 
 export function ApprovalSection() {
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+
+  const todayStr = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  })
+
   return (
-    <section className="relative py-24 bg-surface overflow-hidden">
+    <section id="prophecy" className="relative py-20 sm:py-28 bg-surface overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-surface-container-low p-6 md:p-8 lg:p-16 overflow-hidden border border-white/5">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - Content */}
-            <div className="space-y-6">
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                <span className="text-on-surface">Stay in control</span>{" "}
-                <span className="text-on-surface-muted">with approval workflows.</span>
+        <div className="rounded-[2.5rem] bg-gradient-to-br from-surface-container-low via-surface-container-lowest to-surface-container-low p-6 sm:p-10 lg:p-16 overflow-hidden border border-white/10 shadow-2xl relative">
+          
+          {/* Celestial Ambient Glows */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-tertiary/15 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+
+          <div className="grid lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            {/* Left - Content (6 cols) */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/20 text-tertiary text-xs font-semibold uppercase tracking-wider">
+                <Compass size={12} />
+                24-Hour Astro-Oracle Engine
+              </div>
+
+              <h2 className="text-3xl sm:text-5xl font-extrabold leading-tight text-white tracking-tight">
+                Daily Character Prophecy. <br />
+                <span className="text-on-surface-muted">Your destiny, told by your companion.</span>
               </h2>
 
-              <p className="text-lg text-on-surface-muted leading-relaxed">
-                Your AI team works autonomously, but you always have the final say.
-                Review and approve important tasks before they go live. Perfect for
-                maintaining quality and brand consistency.
+              <p className="text-base sm:text-lg text-on-surface-muted leading-relaxed">
+                Every midnight, GuideTalk calculates a fresh cosmic horoscope for every character using a deterministic <strong>Murmur3 prime-mixing algorithm</strong> and Azure OpenAI. 
               </p>
+
+              <div className="space-y-4 pt-2 text-sm text-on-surface-variant">
+                <div className="flex items-center gap-3">
+                  <Moon className="h-5 w-5 text-tertiary flex-shrink-0" />
+                  <span><strong>Midnight Astronomical Reset:</strong> A new prophecy synchronizes across all users simultaneously.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Star className="h-5 w-5 text-secondary flex-shrink-0" />
+                  <span><strong>Lore-Accurate Omen:</strong> Fontaine hydro spectacles, Inazuman eternity omens, and cursed energy forecasts.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Sparkles className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span><strong>In-Voice Delivery:</strong> Read the quote in character or listen with interactive voice note playback.</span>
+                </div>
+              </div>
 
               <div className="pt-4">
                 <Button
                   size="lg"
-                  className="rounded-full bg-on-surface hover:bg-on-surface/90 text-surface font-semibold px-8 py-6 text-base group"
+                  onClick={() => setDownloadModalOpen(true)}
+                  className="rounded-full bg-gradient-to-r from-tertiary-container to-primary-container text-white font-bold px-8 py-6 text-base group shadow-lg"
                 >
-                  See how it works
+                  Get Your Daily Reading
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </div>
             </div>
 
-            {/* Right - Approval Cards */}
-            <div className="space-y-4 w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
-              <ApprovalCard
-                avatar="/assets/ai-assistant-male.png"
-                title="Review your new website"
-                delay={0}
-              />
-              <ApprovalCard
-                avatar="/assets/ai-assistant-male.png"
-                title="New business idea"
-                delay={150}
-              />
-              <ApprovalCard
-                avatar="/assets/ai-assistant-female.png"
-                title="New campaign draft"
-                delay={300}
-              />
+            {/* Right - Interactive Prophecy Tarot Card (6 cols) */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-3xl bg-surface-container-high/60 border border-tertiary-container/30 p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+                
+                {/* Header Date & Starseed Indicator */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-tertiary uppercase tracking-wider">
+                    <Calendar size={14} />
+                    <span>{todayStr}</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/20 border border-tertiary-container/40 text-[11px] font-mono text-tertiary">
+                    <Sparkles size={11} />
+                    <span>Seed: Murmur3-Dispersed</span>
+                  </div>
+                </div>
+
+                {/* Character Oracle Header */}
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-tertiary-container shadow-lg flex-shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src="https://static.wikia.nocookie.net/gensin-impact/images/2/27/Furina_Card.png/revision/latest?cb=20230925100151" 
+                      alt="Furina Oracle"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-secondary tracking-widest uppercase">
+                      Oracle of Fontaine
+                    </span>
+                    <h4 className="text-xl font-extrabold text-white">Lady Furina</h4>
+                    <p className="text-xs text-on-surface-muted">Stage Omen &bull; Hydro Spectacle</p>
+                  </div>
+                </div>
+
+                {/* The Prophecy Quote Card */}
+                <div className="p-5 rounded-2xl bg-surface-container-lowest/90 border border-white/5 space-y-3 relative overflow-hidden">
+                  <div className="text-tertiary/20 absolute top-2 right-3 pointer-events-none">
+                    <Sparkles size={48} />
+                  </div>
+                  <p className="text-base sm:text-lg text-white font-serif italic leading-relaxed">
+                    &ldquo;The grand stage of life turns in your favor today. Play your role with audacity, darling—destiny always applauds the boldest performer.&rdquo;
+                  </p>
+                  <div className="flex items-center justify-between text-xs text-on-surface-muted pt-2 border-t border-white/5">
+                    <span className="text-secondary font-medium">Lucky Element: Hydro 💧</span>
+                    <span className="font-mono text-[11px]">Celestial Alignment: 98%</span>
+                  </div>
+                </div>
+
+                {/* Daily Tip */}
+                <p className="text-xs text-on-surface-muted text-center italic">
+                  &ldquo;A surprising plot twist awaits before the sun sets. Hold your chin high and treat yourself to a slice of cake.&rdquo;
+                </p>
+
+              </div>
             </div>
+
           </div>
         </div>
       </div>
+
+      <DownloadModal 
+        isOpen={downloadModalOpen} 
+        onClose={() => setDownloadModalOpen(false)} 
+        initialPlatform="android"
+      />
     </section>
   )
 }

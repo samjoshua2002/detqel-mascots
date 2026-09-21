@@ -1,48 +1,86 @@
 "use client"
 
-import Image from "next/image"
+import { useState } from "react"
+import { Sparkles, Search, Wand2, Zap, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { DownloadModal } from "@/components/download-modal"
 
 export function TeamSection() {
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-transparent">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-28 relative overflow-hidden bg-transparent">
+      <div className="container mx-auto px-4 max-w-7xl">
+        
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-center mb-8">
-          <span className="text-white font-bold italic">Sintra X</span>
-          <span className="text-muted-foreground"> - when intelligence</span>
-          <br />
-          <span className="text-muted-foreground italic">outperforms expertise</span>
-        </h2>
-
-        {/* Team carrying books */}
-        <div className="flex justify-center mt-12 mb-16">
-          <Image
-            src="/assets/team.png"
-            alt="Sintra X AI Team carrying books"
-            width={1200}
-            height={400}
-            className="w-full max-w-5xl h-auto object-contain"
-          />
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary text-xs font-semibold uppercase tracking-wider">
+            <Search size={12} />
+            Infinite Anime &amp; Game Multiverse
+          </div>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Can&apos;t find your favourite character? <br />
+            <span className="bg-gradient-to-r from-tertiary via-secondary to-primary bg-clip-text text-transparent">
+              Our AI creates them in seconds.
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg text-on-surface-muted leading-relaxed">
+            Search for any obscure hero, villain, or mascot. If they aren&apos;t already in GuideTalk, our backend combines Azure OpenAI with live web art scrapers to generate their lore, quotes, and avatars instantly.
+          </p>
         </div>
 
-        {/* CTA Button */}
-        <div className="flex justify-center">
-          <button className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 transition-all hover:scale-105 w-full max-w-md justify-center">
-            Get Sintra X
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+        {/* Feature Pill Row */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12 max-w-4xl mx-auto">
+          {[
+            "Genshin Impact",
+            "Jujutsu Kaisen",
+            "Chainsaw Man",
+            "One Piece",
+            "Honkai: Star Rail",
+            "NieR:Automata",
+            "Eminence in Shadow",
+            "Demon Slayer",
+            "Solo Leveling",
+            "Bleach",
+            "Fate/stay night",
+            "Cyberpunk: Edgerunners"
+          ].map((series) => (
+            <span
+              key={series}
+              className="px-4 py-2 rounded-full bg-surface-container-high/60 border border-white/10 text-xs sm:text-sm text-on-surface font-medium hover:border-tertiary/50 hover:text-white transition-colors"
+            >
+              {series}
+            </span>
+          ))}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
-          <StatItem label="More than" value="50M+" description="tasks completed" />
-          <StatItem label="Available" value="24/7" description="always on" />
-          <StatItem label="More than" value="100+" description="integrations" />
-          <StatItem label="More than" value="12" description="AI teammates" />
+        {/* Action Button */}
+        <div className="flex justify-center mb-16">
+          <Button
+            size="lg"
+            onClick={() => setDownloadModalOpen(true)}
+            className="bg-gradient-to-r from-secondary-container to-secondary hover:opacity-95 text-white px-8 py-6 rounded-full font-bold text-base flex items-center gap-2 shadow-xl shadow-secondary-container/20 hover:scale-105 transition-all"
+          >
+            <Wand2 size={18} />
+            Explore Multiverse on GuideTalk
+            <ArrowRight size={18} />
+          </Button>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto pt-8 border-t border-white/10">
+          <StatItem label="Curated Companions" value="100+" description="Ready to chat out-of-the-box" />
+          <StatItem label="AI Auto-Creation" value="Instant" description="Search any character from any series" />
+          <StatItem label="Look Cycling" value="0 ms" description="Instant local candidates cache" />
+          <StatItem label="Availability" value="24/7" description="Direct Azure OpenAI GPT-5.6 cloud" />
         </div>
       </div>
+
+      <DownloadModal 
+        isOpen={downloadModalOpen} 
+        onClose={() => setDownloadModalOpen(false)} 
+        initialPlatform="android"
+      />
     </section>
   )
 }
@@ -57,10 +95,10 @@ function StatItem({
   description: string
 }) {
   return (
-    <div className="text-center">
-      <p className="text-muted-foreground text-sm mb-1">{label}</p>
-      <p className="text-white text-3xl md:text-4xl font-bold">{value}</p>
-      <p className="text-muted-foreground text-sm mt-1">{description}</p>
+    <div className="text-center p-4 rounded-2xl bg-surface-container-low/40 border border-white/5">
+      <p className="text-on-surface-muted text-xs font-semibold uppercase tracking-wider mb-1">{label}</p>
+      <p className="text-white text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white to-on-surface-variant bg-clip-text text-transparent">{value}</p>
+      <p className="text-on-surface-muted text-xs mt-1 leading-snug">{description}</p>
     </div>
   )
 }
